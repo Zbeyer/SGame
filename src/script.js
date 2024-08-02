@@ -82,6 +82,34 @@ class MainMenuScene extends Phaser.Scene  {
 			gem.setScale(0.5);
 			button.setInteractive();
 		}
+
+		/**
+		 * New Game
+		 * Farm
+		 * Upgrades
+		 * Credits
+		 * Quit
+		 **/
+
+		buttons[0].on('pointerdown', () => {
+			this.scene.start('MainGame');
+		});
+
+		// buttons[1].on('pointerdown', () => {
+		// 	this.scene.start('Farm');
+		// });
+
+		// buttons[2].on('pointerdown', () => {
+		// 	this.scene.start('Upgrades');
+		// });
+
+		// buttons[3].on('pointerdown', () => {
+		// 	this.scene.start('Credits');
+		// });
+
+		buttons[4].on('pointerdown', () => {
+			this.scene.start('Quit');
+		});
 	};
 }
 class MainGameScene extends Phaser.Scene {
@@ -96,13 +124,7 @@ class MainGameScene extends Phaser.Scene {
 				this.cameras.main.width / skybg.width
 			)
 		);
-		const logo = this.physics.add.image(400, 100, "gem");
-		logo.setVelocity(200, 300);
-		logo.setBounce(1, 1);
-		logo.setCollideWorldBounds(true);
-
 		newKeyboard(this);
-
 		// Create a text object to display the input
 		const text = (this.inputText = this.add.text(16, 16, "", {
 			font: "24px Courier",
@@ -112,6 +134,56 @@ class MainGameScene extends Phaser.Scene {
 		text.width = 32;
 		text.setOrigin(0, 0);
 		this.text = text;
+
+		const height = 64;
+		const width = 36;
+		let x = 0;
+		let y = 0;
+
+		const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+		const letters2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
+		const letters3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+		const lettersLength = letters.length;
+		const letters2Length = letters2.length;
+		const letters3Length = letters3.length;
+
+		for (let i = 0; i < lettersLength; i++) {
+			x = i % 10;
+			const rectangle = this.add.rectangle(x * width, y * height, width, height, 0x88FFDD);
+			const rectangleBg = this.add.rectangle(rectangle.x + 1, rectangle.y + 1, width - 2, height - 2, 0x000000);
+			rectangleBg.setOrigin(0, 0);
+			rectangle.setOrigin(0, 0);
+			rectangle.setInteractive();
+			const text = this.add.text(rectangleBg.x + 2, rectangleBg.y + 2, letters[i], { fontFamily: 'Courier, monospace', fontSize: '32px', fontStyle: 'bold', color: '#88FFDD' });
+		}
+
+		for (let i = 0; i < letters2Length; i++) {
+			x = i % 9;
+			y = 1;
+			const rectangle = this.add.rectangle(x * width, y * height, width, height, 0x88FFDD);
+			const rectangleBg = this.add.rectangle(rectangle.x + 1, rectangle.y + 1, width - 2, height - 2, 0x000000);
+			rectangleBg.setOrigin(0, 0);
+			rectangle.setOrigin(0, 0);
+			rectangle.setInteractive();
+			const text = this.add.text(rectangleBg.x + 2, rectangleBg.y + 2, letters2[i], { fontFamily: 'Courier, monospace', fontSize: '32px', fontStyle: 'bold', color: '#88FFDD' });
+		}
+
+		for (let i = 0; i < letters3Length; i++) {
+			x = i % 7;
+			y = 2;
+
+			const rectangle = this.add.rectangle(x * width, y * height, width, height, 0x88FFDD);
+			const rectangleBg = this.add.rectangle(rectangle.x + 1, rectangle.y + 1, width - 2, height - 2, 0x000000);
+			rectangleBg.setOrigin(0, 0);
+			rectangle.setOrigin(0, 0);
+			rectangle.setInteractive();
+			rectangle.width -= 2;
+			rectangle.height -= 4;
+			rectangleBg.x += 1;
+			rectangle.y += 1;
+
+			const text = this.add.text(rectangleBg.x + 2, rectangleBg.y + 2, letters3[i], { fontFamily: 'Courier, monospace', fontSize: '32px', fontStyle: 'bold', color: '#88FFDD' });
+		}
 	}
 	update() {
 		const text = this.text;
@@ -128,18 +200,6 @@ class QuitScene extends Phaser.Scene {
 }
 
 const newKeyboard = function (scene) {
-	/**
-	On screen keyb0ard
-	AA >= 24
-	AAA >= 44
-	I think the only way forward is 32x64
-	Tall buttons but not wide.
-	
-	Q W E R T Y U I O P 
-	 A S D F G H J K L
-	   Z X C V B N M
-	   
-	**/
 	function newKeyvent(e) {
 		const text = scene.text;
 
@@ -251,7 +311,7 @@ const makeNewConfig = function () {
 			mode: Phaser.Scale.ScaleModes.FIT,
 			// 512 x 768
 			// 576 x 1024
-			height: 520,
+			height: 512,
 			width: 360
 		},
 		physics: {
