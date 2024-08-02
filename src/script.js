@@ -1,4 +1,6 @@
-export class BootScene extends Phaser.Scene {
+// import Phaser from "phaser";
+
+class BootScene extends Phaser.Scene {
 	// You can define the optional methods init(), preload(), and create().
 	preload() {
 		this.load.image(
@@ -13,7 +15,7 @@ export class BootScene extends Phaser.Scene {
 	}
 }
 
-export class PreloaderScene extends Phaser.Scene {
+class PreloaderScene extends Phaser.Scene {
 	preload() {}
 
 	create() {
@@ -22,7 +24,7 @@ export class PreloaderScene extends Phaser.Scene {
 	}
 }
 
-export class MainMenuScene extends Phaser.Scene {
+class MainMenuScene extends Phaser.Scene {
 	preload() {}
 
 	create() {
@@ -59,7 +61,7 @@ export class MainMenuScene extends Phaser.Scene {
 	}
 }
 
-export class QuitScene extends Phaser.Scene {
+class QuitScene extends Phaser.Scene {
 	create() {
 		this.game.destroy(true);
 	}
