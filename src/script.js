@@ -24,7 +24,67 @@ class PreloaderScene extends Phaser.Scene {
 	}
 }
 
-class MainMenuScene extends Phaser.Scene {
+class MainMenuScene extends Phaser.Scene  {
+	create() {
+
+		const skybg = this.add.image(0, 0, "sky");
+		skybg.setOrigin(0, 0);
+		skybg.setScale(
+			Math.max(
+				this.cameras.main.height / skybg.height,
+				this.cameras.main.width / skybg.width
+			)
+		);
+		const title = 'Hello World';
+		const menuWidth = this.cameras.main.width;
+		const menuHeight = this.cameras.main.height;
+		const text = this.add.text(16, 16, title, { color: '#88DDFF' })
+		text.setBlendMode(Phaser.BlendModes.ADD);
+		text.scale = 1.0;
+		text.setText([
+			'Spelling',
+			'Game'
+		]);
+		this.createButtons(menuWidth, menuHeight);
+	};
+
+	createButtons(menuWidth, menuHeight) {
+		const x = 16;
+		let y = 80;
+		const buttons = [];
+
+		const options= [
+			'New Game',
+			'Farm',
+			'Upgrades',
+			'Credits',
+			'Quit',
+		];
+
+		const numButtons = options.length;
+
+		for (let i = 0; i < numButtons; i++) {
+			y = 72 * i;
+			y += 64;
+			const rectangle = this.add.rectangle(x, y, menuWidth - x * 2, 64, 0x88DDFF);
+			rectangle.setOrigin(0, 0);
+			buttons.push(rectangle);
+		}
+
+		for (let i = 0; i < numButtons; i++)
+		{
+			const button = buttons[i];
+			const gem = this.add.image(24, button.y + button.height * 0.25, 'gem');
+			const text = this.add.text(64, button.y + button.height * 0.25, options[i], {   fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold', color: '#003355' });
+			text.setText(options[i]);
+
+			gem.setOrigin(0, 0);
+			gem.setScale(0.5);
+			button.setInteractive();
+		}
+	};
+}
+class MainGameScene extends Phaser.Scene {
 	preload() {}
 
 	create() {
@@ -211,6 +271,7 @@ const newGame = function () {
 	game.scene.add("Preloader", PreloaderScene);
 	game.scene.add("Quit", QuitScene);
 	game.scene.add("MainMenu", MainMenuScene);
+	game.scene.add("MainGame", MainGameScene);
 
 	game.scene.start("Boot");
 	return game;
