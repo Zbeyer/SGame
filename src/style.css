@@ -1,0 +1,58 @@
+:root {
+	--gold: #e6d0b3;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: 100%;
+	background-color: black;
+}
+
+input[type="text"]:focus {
+	border: 2px solid #555;
+	background-color: white;
+	color: black;
+}
+
+header {
+	color: white;
+	background-color: black;
+}
+
+footer {
+	background-color: black;
+}
+
+main {
+	background-color: black;
+}
+
+canvas {
+	border: 1px solid var(--gold);
+	border-radius: 5px;
+}
+
+button {
+	border: none;
+	border-radius: 24px;
+	text-shadow: 1px 1px 3px #rgba(0, 0, 0, 0.8);
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 24px;
+	background: #0057ad;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+}
+
+button:hover {
+	background: #9e009e;
+	text-decoration: none;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
