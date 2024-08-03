@@ -139,6 +139,7 @@ class MainGameScene extends Phaser.Scene {
 		const width = 36;
 		let x = 0;
 		let y = 0;
+		const buttons = [];
 
 		const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
 		const letters2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
@@ -149,41 +150,59 @@ class MainGameScene extends Phaser.Scene {
 
 		for (let i = 0; i < lettersLength; i++) {
 			x = i % 10;
-			const rectangle = this.add.rectangle(x * width, y * height, width, height, 0x88FFDD);
+			y = this.cameras.main.height - (64 * 3.0);
+
+			const rectangle = this.add.rectangle(x * width, y, width, height, 0x88FFDD);
 			const rectangleBg = this.add.rectangle(rectangle.x + 1, rectangle.y + 1, width - 2, height - 2, 0x000000);
 			rectangleBg.setOrigin(0, 0);
 			rectangle.setOrigin(0, 0);
 			rectangle.setInteractive();
 			const text = this.add.text(rectangleBg.x + 2, rectangleBg.y + 2, letters[i], { fontFamily: 'Courier, monospace', fontSize: '32px', fontStyle: 'bold', color: '#88FFDD' });
+			text.width = rectangle.width;
+			text.x = rectangle.x;
+			text.setAlign('center');
+			buttons.push({rect: rectangle, letter: letters[i]});
+			Phaser.Display.Align.In.Center(text, rectangle);
 		}
 
 		for (let i = 0; i < letters2Length; i++) {
 			x = i % 9;
-			y = 1;
-			const rectangle = this.add.rectangle(x * width, y * height, width, height, 0x88FFDD);
+			y = this.cameras.main.height - (64 * 2.0);
+			const rectangle = this.add.rectangle(x * width + 16, y, width, height, 0x88FFDD);
 			const rectangleBg = this.add.rectangle(rectangle.x + 1, rectangle.y + 1, width - 2, height - 2, 0x000000);
 			rectangleBg.setOrigin(0, 0);
 			rectangle.setOrigin(0, 0);
 			rectangle.setInteractive();
-			const text = this.add.text(rectangleBg.x + 2, rectangleBg.y + 2, letters2[i], { fontFamily: 'Courier, monospace', fontSize: '32px', fontStyle: 'bold', color: '#88FFDD' });
+			const text = this.add.text(rectangleBg.x + 2, rectangleBg.y + 2, letters2[i], { fontFamily: 'Courier, monospace', textAlign: 'center',fontSize: '32px', fontStyle: 'bold', color: '#88FFDD' });
+			text.width = rectangle.width;
+			text.x = rectangle.x;
+			text.setAlign('center');
+			buttons.push({rect: rectangle, letter: letters2[i]});
+			Phaser.Display.Align.In.Center(text, rectangle);
 		}
 
 		for (let i = 0; i < letters3Length; i++) {
 			x = i % 7;
-			y = 2;
-
-			const rectangle = this.add.rectangle(x * width, y * height, width, height, 0x88FFDD);
+			y = this.cameras.main.height - (64 * 1.0);
+			const rectangle = this.add.rectangle(x * width + 52, y, width, height, 0x88FFDD);
 			const rectangleBg = this.add.rectangle(rectangle.x + 1, rectangle.y + 1, width - 2, height - 2, 0x000000);
 			rectangleBg.setOrigin(0, 0);
 			rectangle.setOrigin(0, 0);
 			rectangle.setInteractive();
-			rectangle.width -= 2;
-			rectangle.height -= 4;
-			rectangleBg.x += 1;
-			rectangle.y += 1;
-
 			const text = this.add.text(rectangleBg.x + 2, rectangleBg.y + 2, letters3[i], { fontFamily: 'Courier, monospace', fontSize: '32px', fontStyle: 'bold', color: '#88FFDD' });
+			text.width = rectangle.width;
+			text.x = rectangle.x;
+			text.setAlign('center');
+			buttons.push({rect: rectangle, letter: letters3[i]});
+			Phaser.Display.Align.In.Center(text, rectangle);
 		}
+
+		buttons.forEach((data) => {
+			data.rect.on('pointerdown', () => {
+				const newKey = data.letter.toUpperCase();
+				newLetter(newKey, this);
+			});
+		});
 	}
 	update() {
 		const text = this.text;
@@ -198,27 +217,19 @@ class QuitScene extends Phaser.Scene {
 		this.game.destroy(true);
 	}
 }
+const newLetter = function (letter, scene) {
+	const text = scene.text;
+	text.alpha = 1.0;
+	text.setText(letter);
+}
 
 const newKeyboard = function (scene) {
 	function newKeyvent(e) {
 		const text = scene.text;
-
-		text.alpha = 1.0;
-		text.setText("SPACE");
-
-		if (!(e && e.key)) return;
-
 		text.setText(e.key.toUpperCase());
-		const newKey = e.key.toLowerCase();
+		const newKey = e.key.toUpperCase();
+		newLetter(newKey, scene);
 	}
-	const spaceBar = scene.input.keyboard.addKey(
-		Phaser.Input.Keyboard.KeyCodes.SPACE
-	);
-
-	// Listen for the keydown event
-	spaceBar.on("down", function (event) {
-		newKeyvent(event);
-	});
 
 	scene.input.keyboard.on("keydown-A", function (event) {
 		newKeyvent(event);
