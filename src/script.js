@@ -311,6 +311,18 @@ const newKeyboard = function (scene) {
 	});
 };
 
+
+const save = function (key, value) {
+	key = key || "";
+	value = value || 0;
+	localStorage.setItem(key, value);
+}
+
+const load = function (key) {
+	const value = localStorage.getItem(key) || "";
+	return value;
+}
+
 const makeNewConfig = function () {
 	const config = {
 		type: Phaser.AUTO,
