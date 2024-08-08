@@ -1,11 +1,24 @@
-// import Phaser from "phaser";
-
+/**
+ * BootScene - The first scene to load assets
+ **/
 class BootScene extends Phaser.Scene {
 	// You can define the optional methods init(), preload(), and create().
 	preload() {
 		this.load.image(
 			"gem",
 			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhdp1az-b959df33-22f0-48f0-8ab5-e05f9dcf07b3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGhkcDFhei1iOTU5ZGYzMy0yMmYwLTQ4ZjAtOGFiNS1lMDVmOWRjZjA3YjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BcAiFsXo2vsjaS_N_FOL480j1wBXQJ0Gmzow2JFW6KQ"
+		);
+		this.load.image(
+			"gemO",
+			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhdp1a9-c2c32058-200f-45f1-b59b-594363a34433.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGhkcDFhOS1jMmMzMjA1OC0yMDBmLTQ1ZjEtYjU5Yi01OTQzNjNhMzQ0MzMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.41AzRO5fttlRBSevfSMn0c1NHQPfExpj-t1jE0TiyA0"
+		);
+		this.load.image(
+			"icon",
+			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhxllx7-0af92a17-0f08-4f97-8bb6-ab5dc4310e78.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGh4bGx4Ny0wYWY5MmExNy0wZjA4LTRmOTctOGJiNi1hYjVkYzQzMTBlNzgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.uqUHadk7y7pzDRZB8aQAZanqYMv85bPoZWTAz86criI"
+		);
+		this.load.image(
+			"spaceP",
+			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhxlm75-efac1bab-fc12-478b-922e-c2ce8ba0a22e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGh4bG03NS1lZmFjMWJhYi1mYzEyLTQ3OGItOTIyZS1jMmNlOGJhMGEyMmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.1RLLrV7hkcTIrY171l-bIbTrQxpRnAJTiLJmyqPY9FA"
 		);
 		this.load.setBaseURL("https://labs.phaser.io");
 		this.load.image("sky", "assets/skies/space3.png");
@@ -15,15 +28,51 @@ class BootScene extends Phaser.Scene {
 	}
 }
 
+/**
+ * PreloaderScene, the scene to show any loading indicators
+ **/
 class PreloaderScene extends Phaser.Scene {
 	preload() {}
 
 	create() {
 		this.scene.stop("Preloader");
-		this.scene.start("MainMenu");
+		this.scene.start("MainMenuIcon");
 	}
 }
 
+class MainMenuIcon extends Phaser.Scene {
+	create() {
+		const text = this.add.text(20, 16, "ZBeyer Interstellar Super Speller", {
+			fontFamily: 'Arial',
+			fontSize: '32px',
+			fontStyle: 'bold',
+			align: 'center',
+			color: '#FFCC88'})
+		text.setText([
+			'ZBeyer Interstellar',
+			'Super Speller'
+		]);
+		text.width = this.cameras.main.width;
+		text.setOrigin(0, 0);
+
+		const logo = this.add.image(32,96, "icon");
+		logo.setOrigin(0, 0);
+		const text2 = this.add.text(44, logo.y + logo.height + 16, "Tap Anywhere to continue", { color: '#FFCC55'});
+		text2.setOrigin(0, 0);
+		const rectangle = this.add.rectangle(0, 0, this.cameras.main.width, this.cameras.main.height, 0x000000);
+		rectangle.on('pointerdown', () => {
+			this.scene.start('MainMenu');
+			this.scene.stop('MainMenuIcon');
+		});
+		rectangle.setOrigin(0, 0);
+		rectangle.setInteractive();
+		rectangle.alpha = 0.001; // For some reason if this is zero it is ignored.
+	}
+}
+
+/**
+ * MainMenuScene, the main menu scene
+ **/
 class MainMenuScene extends Phaser.Scene  {
 	create() {
 
@@ -35,24 +84,20 @@ class MainMenuScene extends Phaser.Scene  {
 				this.cameras.main.width / skybg.width
 			)
 		);
+
+		const x = 16;
 		const title = 'Hello World';
 		const menuWidth = this.cameras.main.width;
-		const menuHeight = this.cameras.main.height;
 		const text = this.add.text(16, 16, title, { color: '#88DDFF' })
 		text.setBlendMode(Phaser.BlendModes.ADD);
 		text.scale = 1.0;
 		text.setText([
-			'Spelling',
-			'Game'
+			'ZBeyer Interstellar',
+			'Super Speller'
 		]);
-		this.createButtons(menuWidth, menuHeight);
-	};
 
-	createButtons(menuWidth, menuHeight) {
-		const x = 16;
 		let y = 80;
 		const buttons = [];
-
 		const options= [
 			'New Game',
 			'Farm',
@@ -60,9 +105,8 @@ class MainMenuScene extends Phaser.Scene  {
 			'Credits',
 			'Quit',
 		];
-
+		const gems = [];
 		const numButtons = options.length;
-
 		for (let i = 0; i < numButtons; i++) {
 			y = 72 * i;
 			y += 64;
@@ -75,24 +119,37 @@ class MainMenuScene extends Phaser.Scene  {
 		{
 			const button = buttons[i];
 			const gem = this.add.image(24, button.y + button.height * 0.25, 'gem');
-			const text = this.add.text(64, button.y + button.height * 0.25, options[i], {   fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold', color: '#003355' });
+			gems.push(gem);
+			const text = this.add.text(64, button.y + button.height * 0.25, options[i], {   fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold', color: '#001133' });
 			text.setText(options[i]);
-
 			gem.setOrigin(0, 0);
 			gem.setScale(0.5);
-			button.setInteractive();
 		}
 
-		/**
-		 * New Game
-		 * Farm
-		 * Upgrades
-		 * Credits
-		 * Quit
-		 **/
+		const buttonLength = buttons.length;
+		for (let i = 0; i < buttonLength; i++) {
+			const button = buttons[i];
+			const gem = gems[i];
+			// const text = texts[i];
+			button.setInteractive();
+
+			button.on('pointerover', () => {
+				button.fillColor = 0xDD8855;
+				gem.setTexture('gemO');
+			});
+			button.on('pointerdown', () => {
+				button.fillColor = 0xDD8855;
+				gem.setTexture('gemO');
+			});
+			button.on('pointerout', () => {
+				button.fillColor = 0x88DDFF;
+				gem.setTexture('gem');
+			});
+		}
 
 		buttons[0].on('pointerdown', () => {
 			this.scene.start('MainGame');
+			this.scene.stop("MainMenu");
 		});
 
 		// buttons[1].on('pointerdown', () => {
@@ -109,9 +166,14 @@ class MainMenuScene extends Phaser.Scene  {
 
 		buttons[4].on('pointerdown', () => {
 			this.scene.start('Quit');
+			this.scene.stop("MainMenu");
 		});
 	};
 }
+
+/**
+ * MainGameScene, the main game scene
+ **/
 class MainGameScene extends Phaser.Scene {
 	preload() {}
 
@@ -136,7 +198,7 @@ class MainGameScene extends Phaser.Scene {
 		this.text = text;
 
 		const height = 64;
-		const width = 36;
+		const width = 32;
 		let x = 0;
 		let y = 0;
 		const buttons = [];
@@ -203,6 +265,14 @@ class MainGameScene extends Phaser.Scene {
 				newLetter(newKey, this);
 			});
 		});
+
+		const libOfNames = ["BAT", "CAT",  "FAT", "HAT", "MAT", "RAT", "SAT", "VAT", "ZAP"];
+		const name = libOfNames[Math.floor(Math.random() * libOfNames.length)];
+
+		const myData = [];
+		const data = newTarget(this, name);
+		myData.push(data);
+
 	}
 	update() {
 		const text = this.text;
@@ -212,11 +282,43 @@ class MainGameScene extends Phaser.Scene {
 	}
 }
 
+const newTarget = function (scene, name) {
+	const image = scene.add.image(16, 16, "spaceP");
+	image.setOrigin(0, 0);
+	image.setScale(0.5);
+
+	/*
+	 * 1. Make the object and text fall
+	 * 2. If they hit the bottom, remove a heart
+	 * 3. Type the word to removes the object from the game
+	 *
+	 * Game Over when all hearts are gone
+	 * Score is the number of letters typed
+	 * Farm the letters
+	 * Upgrade to get more hearts
+	 */
+
+	const text = scene.add.text(16, 16, name, { fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold',
+		color: '#FFDDDD',
+		stroke: '#221100', // Stroke color
+		strokeThickness: 8 // Stroke thickness
+	});
+
+	return {
+		image: image,
+		name: name
+	};
+}
+
+/**
+ * QuitScene, the scene to quit the game
+ */
 class QuitScene extends Phaser.Scene {
 	create() {
 		this.game.destroy(true);
 	}
 }
+
 const newLetter = function (letter, scene) {
 	const text = scene.text;
 	text.alpha = 1.0;
@@ -311,17 +413,31 @@ const newKeyboard = function (scene) {
 	});
 };
 
-
+/**
+ * Save to local storage
+ * @param key
+ * @param value
+ **/
 const save = function (key, value) {
 	key = key || "";
 	value = value || 0;
 	localStorage.setItem(key, value);
 }
 
+/**
+ * Load from local storage
+ * @param key
+ * @returns {string|string}
+ **/
 const load = function (key) {
 	const value = localStorage.getItem(key) || "";
 	return value;
 }
+
+/**
+ * Make a new game configuration
+ * @returns {{parent: string, physics: {default: string, arcade: {gravity: {y: number}}}, scale: {mode: Phaser.Scale.ScaleModes.FIT, width: number, height: number}, type: number, render: {pixelArt: boolean}}}
+ **/
 
 const makeNewConfig = function () {
 	const config = {
@@ -334,8 +450,8 @@ const makeNewConfig = function () {
 			mode: Phaser.Scale.ScaleModes.FIT,
 			// 512 x 768
 			// 576 x 1024
-			height: 512,
-			width: 360
+			height: 480,
+			width: 320
 		},
 		physics: {
 			default: "arcade",
@@ -347,11 +463,17 @@ const makeNewConfig = function () {
 	return config;
 };
 
+/**
+ * Start a new game
+ * @returns {Phaser.Game}
+ * **/
 const newGame = function () {
 	const config = makeNewConfig();
 	const game = new Phaser.Game(config);
 	game.scene.add("Boot", BootScene);
 	game.scene.add("Preloader", PreloaderScene);
+	game.scene.add("MainMenuIcon", MainMenuIcon);
+
 	game.scene.add("Quit", QuitScene);
 	game.scene.add("MainMenu", MainMenuScene);
 	game.scene.add("MainGame", MainGameScene);
@@ -360,4 +482,5 @@ const newGame = function () {
 	return game;
 };
 
+// Start the game
 newGame();
