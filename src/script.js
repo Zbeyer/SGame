@@ -175,8 +175,6 @@ class MainMenuScene extends Phaser.Scene  {
  * MainGameScene, the main game scene
  **/
 class MainGameScene extends Phaser.Scene {
-	preload() {}
-
 	create() {
 		const skybg = this.add.image(0, 0, "sky");
 		skybg.setOrigin(0, 0);
@@ -266,67 +264,49 @@ class MainGameScene extends Phaser.Scene {
 			});
 		});
 
-		const libOfNames = ["BAT", "CAT", "DOG", "FAT", "HAT", "LOG", "MAP", "RAT", "SAT", "VAT", "ZAP"];
-		libOfNames.push("FROG");
-		const name = libOfNames[Math.floor(Math.random() * libOfNames.length)];
-
+		const scene = this;
+		// const libOfNames = ["BAT", "CAT", "DOG", "FAT", "HAT", "LOG", "MAP", "RAT", "SAT", "VAT", "ZAP"];
+		// const libOfNames = ['CAT', 'DOG', 'APPLE', 'BERRY', 'CHERRY', 'ORANGE', 'KIWI', 'MANGO', 'PEACH', 'PLUM'];
+		const libOfNames = ['CAT', 'FROG', 'APPLE', 'CHERRY'];
+		// libOfNames.push("FROG");
+		const speed = 1.0;
 		const myData = [];
-		const data = newTarget(this, name);
-		myData.push(data);
+		let frames = 0;
+		setInterval (function () {
+			frames++;
+			const text = scene.text;
+			if (text.alpha > 0) {
+				text.alpha -= 0.005;
+			}
 
-	}
-	update() {
-		const text = this.text;
-		if (text.alpha > 0) {
-			text.alpha -= 0.01;
-		}
-	}
-}
+			const dataLength = myData.length;
+			for (let i = 0; i < dataLength; i++)
+			{
+				const d = myData[i];
+				const image = d.image;
+				image.y += speed;
+				const text = d.text
+				text.y += speed;
+			}
 
-const newTarget = function (scene, name) {
+			for (let i = 0; i < dataLength; i++)
+			{
+				const d = myData[i];
+				if (d.image.y >= 160)
+				{
+					d.image.destroy();
+					d.name = null;
+					d.text.destroy();
+				}
+			}
 
-	/*
-	 * 1. Make the object and text fall
-	 * 2. If they hit the bottom, remove a heart
-	 * 3. Type the word to removes the object from the game
-	 *
-	 * Game Over when all hearts are gone
-	 * Score is the number of letters typed
-	 * Farm the letters
-	 * Upgrade to get more hearts
-	 */
+			if (frames % 160 !== 0) return;
 
-	const image = scene.add.image(16, 8, "spaceP");
-	image.setOrigin(0, 0);
-	image.setScale(0.60);
-	const text = scene.add.text(image.x, image.y + 16, name, {
-		fontFamily: 'Arial',
-		fontSize: '32px',
-		fontStyle: 'bold',
-		align: 'center',
-		color: '#FFDDDD',
-		stroke: '#221100', // Stroke color
-		strokeThickness: 8 // Stroke thickness
-	});
-	const characterCount = text.text.length || 1;
-	let newX = image.x + 12 * characterCount;
-	switch (characterCount) {
-		case 3:
-			newX = image.x + 14 * characterCount;
-			break;
-		case 4:
-			newX = image.x + 7 * characterCount;
-			break;
-		default:
-			newX = image.x + 14 * characterCount;
-			break;
-	}
-	text.x = newX;
-	return {
-		image: image,
-		name: name,
-		text: text
-	};
+			const name = libOfNames[Math.floor(Math.random() * libOfNames.length)];
+			const data = newTarget(scene, name);
+			myData.push(data);
+
+	}, 16.0)}; // Approx. 120 updates per second
 }
 
 /**
@@ -342,6 +322,56 @@ const newLetter = function (letter, scene) {
 	const text = scene.text;
 	text.alpha = 1.0;
 	text.setText(letter);
+}
+
+const newTarget = function (scene, name) {
+	/*
+	 * 2. If they hit the bottom, remove a heart
+	 * 3. Type the word to removes the object from the game
+	 *
+	 * Game Over when all hearts are gone
+	 * Score is the number of letters typed
+	 * Farm the letters
+	 * Upgrade to get more hearts
+	 */
+	const image = scene.add.image(64, 0, "spaceP");
+	image.setOrigin(0, 0);
+	image.setScale(0.80);
+	image.y = -image.height;
+	const text = scene.add.text(image.x, image.y + 32, name, {
+		fontFamily: 'Arial',
+		fontSize: '32px',
+		fontStyle: 'bold',
+		align: 'center',
+		color: '#FFDDDD',
+		stroke: '#221100', // Stroke color
+		strokeThickness: 8 // Stroke thickness
+	});
+	const characterCount = text.text.length;
+	let newX = image.x + 12 * characterCount;
+	switch (characterCount) {
+		case 3:
+			newX = image.x + 22 * characterCount;
+			break;
+		case 4:
+			newX = image.x + 14 * characterCount;
+			break;
+		case 5:
+			newX = image.x + 9 * characterCount;
+			break;
+		case 6:
+			newX = image.x + 5 * characterCount;
+			break;
+		default:
+			newX = image.x + 3 * characterCount;
+			break;
+	}
+	text.x = newX;
+	return {
+		image: image,
+		name: name,
+		text: text
+	};
 }
 
 const newKeyboard = function (scene) {
