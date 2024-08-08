@@ -3,7 +3,16 @@
  **/
 class BootScene extends Phaser.Scene {
 	// You can define the optional methods init(), preload(), and create().
-	preload() {
+	preload()
+	{
+		this.load.image(
+			"heartEmpty",
+			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhxpckr-d3c94e0f-f9f0-4571-848b-a6785b5cdeb0.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGh4cGNrci1kM2M5NGUwZi1mOWYwLTQ1NzEtODQ4Yi1hNjc4NWI1Y2RlYjAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.EyOSIfFeFGUXvLJbEkBA0leESzIkUyyUVBBqiUkJKxs"
+		);
+		this.load.image(
+			"heartFull",
+			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhxpckh-970de5cb-b44a-4bc1-af24-8c4ed31bcb15.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGh4cGNraC05NzBkZTVjYi1iNDRhLTRiYzEtYWYyNC04YzRlZDMxYmNiMTUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.FDSqr2snNs_-R_sqS-k_h92hoN2pOZUa_1kL3WEttpg"
+		);
 		this.load.image(
 			"gem",
 			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhdp1az-b959df33-22f0-48f0-8ab5-e05f9dcf07b3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGhkcDFhei1iOTU5ZGYzMy0yMmYwLTQ4ZjAtOGFiNS1lMDVmOWRjZjA3YjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BcAiFsXo2vsjaS_N_FOL480j1wBXQJ0Gmzow2JFW6KQ"
@@ -154,14 +163,17 @@ class MainMenuScene extends Phaser.Scene  {
 
 		// buttons[1].on('pointerdown', () => {
 		// 	this.scene.start('Farm');
+		// this.scene.stop("MainMenu");
 		// });
 
 		// buttons[2].on('pointerdown', () => {
 		// 	this.scene.start('Upgrades');
+		// this.scene.stop("MainMenu");
 		// });
 
 		// buttons[3].on('pointerdown', () => {
 		// 	this.scene.start('Credits');
+		// this.scene.stop("MainMenu");
 		// });
 
 		buttons[4].on('pointerdown', () => {
