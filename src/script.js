@@ -292,7 +292,7 @@ class MainGameScene extends Phaser.Scene {
 			for (let i = 0; i < dataLength; i++)
 			{
 				const d = myData[i];
-				if (d.image.y >= 160)
+				if (d.image.y >= 128)
 				{
 					d.image.destroy();
 					d.name = null;
@@ -334,11 +334,11 @@ const newTarget = function (scene, name) {
 	 * Farm the letters
 	 * Upgrade to get more hearts
 	 */
-	const image = scene.add.image(64, 0, "spaceP");
+	const image = scene.add.image(8 + Math.floor(Math.random() * 116), 0, "spaceP");
 	image.setOrigin(0, 0);
 	image.setScale(0.80);
 	image.y = -image.height;
-	const text = scene.add.text(image.x, image.y + 32, name, {
+	const text = scene.add.text(image.x, image.y + 40, name, {
 		fontFamily: 'Arial',
 		fontSize: '32px',
 		fontStyle: 'bold',
@@ -348,7 +348,7 @@ const newTarget = function (scene, name) {
 		strokeThickness: 8 // Stroke thickness
 	});
 	const characterCount = text.text.length;
-	let newX = image.x + 12 * characterCount;
+	let newX;
 	switch (characterCount) {
 		case 3:
 			newX = image.x + 22 * characterCount;
