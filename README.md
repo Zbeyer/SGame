@@ -1,6 +1,8 @@
-# SGame
+# Spelling Game
 
->   Spelling Game
+>   ZBeyer Interstellar
+>
+>   Super Speller
 
 ## App (Electron)
 
