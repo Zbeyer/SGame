@@ -266,7 +266,8 @@ class MainGameScene extends Phaser.Scene {
 			});
 		});
 
-		const libOfNames = ["BAT", "CAT",  "FAT", "HAT", "MAT", "RAT", "SAT", "VAT", "ZAP"];
+		const libOfNames = ["BAT", "CAT", "DOG", "FAT", "HAT", "LOG", "MAP", "RAT", "SAT", "VAT", "ZAP"];
+		libOfNames.push("FROG");
 		const name = libOfNames[Math.floor(Math.random() * libOfNames.length)];
 
 		const myData = [];
@@ -283,9 +284,6 @@ class MainGameScene extends Phaser.Scene {
 }
 
 const newTarget = function (scene, name) {
-	const image = scene.add.image(16, 16, "spaceP");
-	image.setOrigin(0, 0);
-	image.setScale(0.5);
 
 	/*
 	 * 1. Make the object and text fall
@@ -298,15 +296,36 @@ const newTarget = function (scene, name) {
 	 * Upgrade to get more hearts
 	 */
 
-	const text = scene.add.text(16, 16, name, { fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold',
+	const image = scene.add.image(16, 8, "spaceP");
+	image.setOrigin(0, 0);
+	image.setScale(0.60);
+	const text = scene.add.text(image.x, image.y + 16, name, {
+		fontFamily: 'Arial',
+		fontSize: '32px',
+		fontStyle: 'bold',
+		align: 'center',
 		color: '#FFDDDD',
 		stroke: '#221100', // Stroke color
 		strokeThickness: 8 // Stroke thickness
 	});
-
+	const characterCount = text.text.length || 1;
+	let newX = image.x + 12 * characterCount;
+	switch (characterCount) {
+		case 3:
+			newX = image.x + 14 * characterCount;
+			break;
+		case 4:
+			newX = image.x + 7 * characterCount;
+			break;
+		default:
+			newX = image.x + 14 * characterCount;
+			break;
+	}
+	text.x = newX;
 	return {
 		image: image,
-		name: name
+		name: name,
+		text: text
 	};
 }
 
