@@ -346,7 +346,7 @@ const newTarget = function (scene, name) {
 	 * Farm the letters
 	 * Upgrade to get more hearts
 	 */
-	const image = scene.add.image(8 + Math.floor(Math.random() * 116), 0, "spaceP");
+	const image = scene.add.image(8 + Math.floor(Math.random() * 96), 0, "spaceP");
 	image.setOrigin(0, 0);
 	image.setScale(0.80);
 	image.y = -image.height;
