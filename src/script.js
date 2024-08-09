@@ -1,3 +1,19 @@
+const myLibOfWords = function () {
+	return [
+		"PURR", "RIBBIT", "CRISP", "BLUSH", "SIAMESE", "TADPOLE", "JUICY", "RIPE", "TABBY", "LILY", "CORE", "PIT",
+		"STEM", "STONE", "BOG", "PEEL", "PICK", "BUSH", "JAM", "SPAWN", "PRESS", "GILLS", "PIE", "BASK", "FUJI", "LEOPARD",
+		"SLIME", "SMITH", "JAGUAR", "HONEY", "PUMA", "LADY", "COUGAR", "EMPIRE", "SERVAL", "PINK", "CAKE", "SWIFT",
+		"GREEN", "SPLAT", "CLAWS", "PURRS", "HOPPY", "FRUIT", "BERRY", "FELID", "CROAK", "SWEET", "TARTS", "MEOWS",
+		"PADS", "SEEDY", "BLOOM", "KITTY", "WARTS", "FLESH", "CHOMP", "LIMBS", "BUGGY", "TWIGS", "BRANCH", "FURRY", "MOIST",
+		"CRISP", "SNACK", "PAWS", "MUCKY", "PLUCK", "SQUAT", "FELIX", "TOADS", "SKINS", "CHEWS", "VINES", "LEAPS", "FROGS",
+		"APPLE", "MUNCH", "BOGGY", "SAUCE", "JUMPS", "NEWTS", "FRESH", "PIPED", "SPOTS", "SLURP", "BARKS", "SUNNY", "CATTY",
+		"WEBBY", "SHINY", "BITE", "LEAFY", "STALK", "GROWL", "PONDS", "TASTE", "FLORA", "PURR", "CROAK", "CRISP", "CHOMP",
+		"MEOW", "HOP", "BITE", "JUMP", "PICK", "RIBBIT", "SQUISH", "SPLASH", "TWIG", "BARK", "LEAF", "STEM", "SEED", "ROOT",
+		"POND", "MUD", "BUG", "ANT", "BEE", "FLY", "WORM", "MOSS", "FERN", "TREE", "STAR", "SKY", "SUN", "MOON", "CLOUD",
+		"RAIN", "WIND", "SNOW", "ICE", "FIRE", "SMOKE", "ASH", "DUST", "SAND", "ROCK", "CLAY", "DIRT"
+	];
+}
+
 /**
  * BootScene - The first scene to load assets
  **/
@@ -109,9 +125,9 @@ class MainMenuScene extends Phaser.Scene  {
 		const buttons = [];
 		const options= [
 			'New Game',
-			'Farm',
-			'Upgrades',
-			'Credits',
+			// 'Farm',
+			// 'Upgrades',
+			// 'Credits',
 			'Quit',
 		];
 		const gems = [];
@@ -176,7 +192,7 @@ class MainMenuScene extends Phaser.Scene  {
 		// this.scene.stop("MainMenu");
 		// });
 
-		buttons[4].on('pointerdown', () => {
+		buttons[1].on('pointerdown', () => {
 			this.scene.start('Quit');
 			this.scene.stop("MainMenu");
 		});
@@ -277,10 +293,7 @@ class MainGameScene extends Phaser.Scene {
 		});
 
 		const scene = this;
-		// const libOfNames = ["BAT", "CAT", "DOG", "FAT", "HAT", "LOG", "MAP", "RAT", "SAT", "VAT", "ZAP"];
-		// const libOfNames = ['CAT', 'DOG', 'APPLE', 'BERRY', 'CHERRY', 'ORANGE', 'KIWI', 'MANGO', 'PEACH', 'PLUM'];
-		const libOfNames = ['CAT', 'FROG', 'APPLE', 'CHERRY'];
-		// libOfNames.push("FROG");
+		const libOfWords = myLibOfWords();
 		const speed = 1.0;
 		const myData = [];
 		let frames = 0;
@@ -314,7 +327,7 @@ class MainGameScene extends Phaser.Scene {
 
 			if (frames % 160 !== 0) return;
 
-			const name = libOfNames[Math.floor(Math.random() * libOfNames.length)];
+			const name = libOfWords[Math.floor(Math.random() * libOfWords.length)];
 			const data = newTarget(scene, name);
 			myData.push(data);
 
