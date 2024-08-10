@@ -204,6 +204,7 @@ class MainMenuScene extends Phaser.Scene  {
  **/
 class MainGameScene extends Phaser.Scene {
 	create() {
+
 		const skybg = this.add.image(0, 0, "sky");
 		skybg.setOrigin(0, 0);
 		skybg.setScale(
@@ -212,6 +213,19 @@ class MainGameScene extends Phaser.Scene {
 				this.cameras.main.width / skybg.width
 			)
 		);
+
+		const heartBG = this.add.rectangle(32, 256, this.cameras.main.width - 64,  32,  0x002211)
+		heartBG.setOrigin(0, 0);
+
+		this.hp = 5; // upgradeable
+
+		const stats = this.add.text(296, 16, "", {
+			color: '#FFFFFF', // Use a comma here instead of a semicolon
+			fontStyle: 'bold',
+		})
+		stats.setOrigin(0, 0);
+		this.myStats = stats;
+
 		newKeyboard(this);
 		// Create a text object to display the input
 		const text = (this.inputText = this.add.text(16, 16, "", {
@@ -294,7 +308,7 @@ class MainGameScene extends Phaser.Scene {
 
 		const scene = this;
 		const libOfWords = myLibOfWords();
-		const speed = 1.0;
+		const speed = 1.0; // upgradeable
 		const myData = [];
 		let frames = 0;
 		setInterval (function () {
@@ -303,6 +317,8 @@ class MainGameScene extends Phaser.Scene {
 			if (text.alpha > 0) {
 				text.alpha -= 0.005;
 			}
+
+			// fireLetter(scene.text)
 
 			const dataLength = myData.length;
 			for (let i = 0; i < dataLength; i++)
@@ -319,6 +335,12 @@ class MainGameScene extends Phaser.Scene {
 				const d = myData[i];
 				if (d.image.y >= 128)
 				{
+					if (d.name)
+					{
+						let hp = scene.hp;
+						hp = hp - 1;
+						scene.hp = hp;
+					}
 					d.image.destroy();
 					d.name = null;
 					d.text.destroy();
@@ -332,6 +354,19 @@ class MainGameScene extends Phaser.Scene {
 			myData.push(data);
 
 	}, 16.0)}; // Approx. 120 updates per second
+
+	update(time, delta) {
+		const stats = this.myStats;
+		stats.setText([
+			this.hp
+		])
+
+		if (this.hp <= 0)
+		{
+			// Go to game over scene
+			// this.scene.start ("")
+		}
+	}
 }
 
 /**
