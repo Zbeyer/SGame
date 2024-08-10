@@ -22,7 +22,7 @@ class BootScene extends Phaser.Scene {
 	{
 		this.load.audio(
 			'laser',
-			'https://github.com/Zbeyer/SGame/blame/master/assets/laser-shot-ingame-230500.mp3'
+			'https://github.com/Zbeyer/SGame/raw/6332631ef9893dc07ebb4f04b499932628d38a21/assets/laser-shot-ingame-230500.mp3s'
 		);
 		this.load.image(
 			"heartEmpty",
@@ -220,7 +220,7 @@ class MainGameScene extends Phaser.Scene {
 		const heartBG = this.add.rectangle(32, 256, this.cameras.main.width - 64,  32,  0x002211)
 		heartBG.setOrigin(0, 0);
 
-		this.hp = 5; // upgradeable
+		this.hp = 3; // upgradeable
 
 		const stats = this.add.text(296, 16, "", {
 			color: '#FFFFFF', // Use a comma here instead of a semicolon
@@ -387,7 +387,41 @@ class QuitScene extends Phaser.Scene {
  */
 class GameOverScene extends Phaser.Scene {
 	create() {
-
+		const skybg = this.add.image(0, 0, "sky");
+		skybg.setOrigin(0, 0);
+		skybg.setScale(
+			Math.max(
+				this.cameras.main.height / skybg.height,
+				this.cameras.main.width / skybg.width
+			)
+		);
+		const gameOverText = this.add.text(16, 16, "Game Over", {
+			fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold', color: '#5588DD'
+		});
+		const button = this.add.rectangle(16, 64, this.cameras.main.width - 32, 64, 0x005588);
+		button.setOrigin(0, 0);
+		const gem = this.add.image(32, 80, 'gem');
+		gem.setScale( 0.5);
+		gem.setOrigin(0, 0);
+		const buttonText = this.add.text(gem.x + gem.width, button.y + button.height * 0.25, "Main Menu", {
+			fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold', color: '#001133'
+		});
+		buttonText.setOrigin(0, 0);
+		button.setInteractive();
+		button.on('pointerover', () => {
+			button.fillColor = 0xDD8855;
+			gem.setTexture('gemO');
+		});
+		button.on('pointerdown', () => {
+			button.fillColor = 0xDD8855;
+			gem.setTexture('gemO');
+			this.scene.stop('GameOverScene');
+			this.scene.start('MainMenu');
+		});
+		button.on('pointerout', () => {
+			button.fillColor = 0x88DDFF;
+			gem.setTexture('gem');
+		});
 	}
 }
 
