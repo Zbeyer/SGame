@@ -18,9 +18,12 @@ const myLibOfWords = function () {
  * BootScene - The first scene to load assets
  **/
 class BootScene extends Phaser.Scene {
-	// You can define the optional methods init(), preload(), and create().
 	preload()
 	{
+		this.load.audio(
+			'laser',
+			'https://github.com/Zbeyer/SGame/blame/master/assets/laser-shot-ingame-230500.mp3'
+		);
 		this.load.image(
 			"heartEmpty",
 			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhxpckr-d3c94e0f-f9f0-4571-848b-a6785b5cdeb0.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGh4cGNrci1kM2M5NGUwZi1mOWYwLTQ1NzEtODQ4Yi1hNjc4NWI1Y2RlYjAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.EyOSIfFeFGUXvLJbEkBA0leESzIkUyyUVBBqiUkJKxs"
@@ -360,10 +363,12 @@ class MainGameScene extends Phaser.Scene {
 			this.hp
 		])
 
-		if (this.hp <= 0)
+		if (this.hp < 0)
 		{
 			// Go to game over scene
 			// this.scene.start ("")
+			this.scene.start ("GameOverScene");
+			this.scene.stop('MainGame');
 		}
 	}
 }
@@ -377,6 +382,15 @@ class QuitScene extends Phaser.Scene {
 	}
 }
 
+/**
+ * GameOverScene, a scene to show the score
+ */
+class GameOverScene extends Phaser.Scene {
+	create() {
+
+	}
+}
+
 const newLetter = function (letter, scene) {
 	const text = scene.text;
 	text.alpha = 1.0;
@@ -384,14 +398,7 @@ const newLetter = function (letter, scene) {
 }
 
 const fireLetter = function (letter, scene) {
-	// console.log("letter: %o", letter);
-	// First, preload the sound in your Phaser scene
-	this.load.audio('laser', 'path/to/your/downloaded/laser.mp3');
-
-// Then, create a sound instance in your scene's create method
-	let laserSound = this.sound.add('laser');
-
-// Finally, play the sound when you need it (e.g., when firing a laser)
+	const laserSound = scene.sound.add('laser');
 	laserSound.play();
 }
 
@@ -598,6 +605,7 @@ const newGame = function () {
 	game.scene.add("Quit", QuitScene);
 	game.scene.add("MainMenu", MainMenuScene);
 	game.scene.add("MainGame", MainGameScene);
+	game.scene.add("GameOverScene", GameOverScene);
 
 	game.scene.start("Boot");
 	return game;
