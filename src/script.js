@@ -303,6 +303,7 @@ class MainGameScene extends Phaser.Scene {
 			data.rect.on('pointerdown', () => {
 				const newKey = data.letter.toUpperCase();
 				newLetter(newKey, this);
+				fireLetter(newKey, this);
 			});
 		});
 
@@ -317,8 +318,6 @@ class MainGameScene extends Phaser.Scene {
 			if (text.alpha > 0) {
 				text.alpha -= 0.005;
 			}
-
-			// fireLetter(scene.text)
 
 			const dataLength = myData.length;
 			for (let i = 0; i < dataLength; i++)
@@ -384,6 +383,18 @@ const newLetter = function (letter, scene) {
 	text.setText(letter);
 }
 
+const fireLetter = function (letter, scene) {
+	// console.log("letter: %o", letter);
+	// First, preload the sound in your Phaser scene
+	this.load.audio('laser', 'path/to/your/downloaded/laser.mp3');
+
+// Then, create a sound instance in your scene's create method
+	let laserSound = this.sound.add('laser');
+
+// Finally, play the sound when you need it (e.g., when firing a laser)
+	laserSound.play();
+}
+
 const newTarget = function (scene, name) {
 	/*
 	 * 2. If they hit the bottom, remove a heart
@@ -440,6 +451,7 @@ const newKeyboard = function (scene) {
 		text.setText(e.key.toUpperCase());
 		const newKey = e.key.toUpperCase();
 		newLetter(newKey, scene);
+		fireLetter(newKey, scene);
 	}
 
 	scene.input.keyboard.on("keydown-A", function (event) {
