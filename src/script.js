@@ -400,10 +400,10 @@ class GameOverScene extends Phaser.Scene {
 		});
 		const button = this.add.rectangle(16, 64, this.cameras.main.width - 32, 64, 0x005588);
 		button.setOrigin(0, 0);
-		const gem = this.add.image(32, 80, 'gem');
+		const gem = this.add.image(24, 80, 'gem');
 		gem.setScale( 0.5);
 		gem.setOrigin(0, 0);
-		const buttonText = this.add.text(gem.x + gem.width, button.y + button.height * 0.25, "Main Menu", {
+		const buttonText = this.add.text(64, button.y + button.height * 0.25, "Main Menu", {
 			fontFamily: 'Arial', fontSize: '32px', fontStyle: 'bold', color: '#001133'
 		});
 		buttonText.setOrigin(0, 0);
@@ -432,15 +432,16 @@ const newLetter = function (letter, scene) {
 }
 
 const fireLetter = function (letter, scene) {
-	const laserSound = scene.sound.add('laser');
-	laserSound.play();
+	// const laserSound = scene.sound.add('laser');
+	// laserSound.play();
+
+	// Fire a letter from the sides to the platform and if we have a match increase the score
+	// When all letters are clear delete the platform
+	// No hearts lost if platform is removed this way.
 }
 
 const newTarget = function (scene, name) {
 	/*
-	 * 2. If they hit the bottom, remove a heart
-	 * 3. Type the word to removes the object from the game
-	 *
 	 * Game Over when all hearts are gone
 	 * Score is the number of letters typed
 	 * Farm the letters
