@@ -22,7 +22,7 @@ class BootScene extends Phaser.Scene {
 	{
 		this.load.audio(
 			'laser',
-			'https://github.com/Zbeyer/SGame/raw/6332631ef9893dc07ebb4f04b499932628d38a21/assets/laser-shot-ingame-230500.mp3s'
+			'https://www.dropbox.com/scl/fi/wuam4zi5tm9eftw2umz6e/laser-shot-ingame-230500.mp3?rlkey=g1hhwtbnn149y3s6dwlp9xma3&dl=0'
 		);
 		this.load.image(
 			"heartEmpty",
@@ -432,8 +432,8 @@ const newLetter = function (letter, scene) {
 }
 
 const fireLetter = function (letter, scene) {
-	// const laserSound = scene.sound.add('laser');
-	// laserSound.play();
+	const laserSound = scene.sound.add('laser');
+	laserSound.play();
 
 	// Fire a letter from the sides to the platform and if we have a match increase the score
 	// When all letters are clear delete the platform
