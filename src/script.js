@@ -20,10 +20,18 @@ const myLibOfWords = function () {
 class BootScene extends Phaser.Scene {
 	preload()
 	{
-		this.load.audio(
-			'laser',
-			'https://www.dropbox.com/scl/fi/wuam4zi5tm9eftw2umz6e/laser-shot-ingame-230500.mp3?rlkey=g1hhwtbnn149y3s6dwlp9xma3&dl=0'
-		);
+		// this.load.audio('mySound', 'path/to/sound/file.mp3');
+		// this.load.audio(
+		// 	'laser',
+		// 	[
+		// 		'https://github.com/Zbeyer/personal/blob/c2b972b2ba0e69369c2f4e3c3af6a326d5643721/sounsds/PopC.wav'
+		// 	]);
+		//
+		// // var sound = this.sound.add('mySound');
+		// const laserSound = this.sound.add('laser');
+		// // sound.play();
+		// laserSound.play();
+
 		this.load.image(
 			"heartEmpty",
 			"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/07586bf8-104f-4874-9186-51da8dc46f6c/dhxpckr-d3c94e0f-f9f0-4571-848b-a6785b5cdeb0.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA3NTg2YmY4LTEwNGYtNDg3NC05MTg2LTUxZGE4ZGM0NmY2Y1wvZGh4cGNrci1kM2M5NGUwZi1mOWYwLTQ1NzEtODQ4Yi1hNjc4NWI1Y2RlYjAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.EyOSIfFeFGUXvLJbEkBA0leESzIkUyyUVBBqiUkJKxs"
@@ -432,7 +440,9 @@ const newLetter = function (letter, scene) {
 }
 
 const fireLetter = function (letter, scene) {
+	// var sound = this.sound.add('mySound');
 	const laserSound = scene.sound.add('laser');
+	// sound.play();
 	laserSound.play();
 
 	// Fire a letter from the sides to the platform and if we have a match increase the score
@@ -604,22 +614,20 @@ const load = function (key) {
 
 const makeNewConfig = function () {
 	const config = {
+		// Phaser.Scale.ScaleModes.FIT
 		type: Phaser.AUTO,
+		// 512 x 768
+		// 576 x 1024
+		height: 480,
+		width: 320,
 		parent: "game-container",
 		render: {
 			pixelArt: true
 		},
-		scale: {
-			mode: Phaser.Scale.ScaleModes.FIT,
-			// 512 x 768
-			// 576 x 1024
-			height: 480,
-			width: 320
-		},
 		physics: {
-			default: "arcade",
+			default: 'arcade',
 			arcade: {
-				gravity: { y: 200 }
+				debug: false
 			}
 		}
 	};
